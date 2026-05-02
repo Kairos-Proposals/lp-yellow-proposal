@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP デザイン・コーディング制作 提案書 | Kairos</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0C0C0C;
+  --black-mid: #141414;
+  --black-light: #1C1C1C;
+  --white: #FAFAFA;
+  --yellow: #F5C800;
+  --yellow-dark: #D4A800;
+  --yellow-light: rgba(245,200,0,0.1);
+  --yellow-border: rgba(245,200,0,0.3);
+  --yellow-pale: #FFFBEA;
+  --gray: #888;
+  --stone: #2A2A2A;
+  --text-dim: rgba(255,255,255,0.45);
+  --text-muted: rgba(255,255,255,0.2);
+  --border: rgba(255,255,255,0.07);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; }
+
+/* HERO */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  padding:80px 28px 64px; position:relative; overflow:hidden;
+}
+.hero-top { position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, var(--yellow), transparent); }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--yellow-border); background:var(--yellow-light); padding:5px 16px; font-family:'DM Mono',monospace; font-size:10px; color:var(--yellow); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:36px; width:fit-content; }
+.hero h1 { font-family:'Noto Serif JP',serif; font-size:clamp(26px,6vw,50px); font-weight:700; line-height:1.4; margin-bottom:20px; color:var(--white); }
+.hero h1 em { font-style:normal; color:var(--yellow); }
+.hero-divider { width:40px; height:1px; background:linear-gradient(90deg, var(--yellow), transparent); margin:22px 0; }
+.hero-sub { font-size:13px; color:var(--text-dim); line-height:1.9; max-width:520px; margin-bottom:48px; font-weight:300; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.06); max-width:420px; }
+.stat { background:rgba(255,255,255,0.03); padding:16px 12px; text-align:center; }
+.stat-val { display:block; font-family:'DM Mono',monospace; font-size:15px; color:var(--yellow); line-height:1; margin-bottom:5px; }
+.stat-label { font-size:10px; color:var(--text-muted); line-height:1.5; }
+
+/* SECTION */
+.section { padding:72px 28px; }
+.sec-label { font-family:'DM Mono',monospace; font-size:10px; color:var(--yellow); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:10px; }
+.sec-title { font-family:'Noto Serif JP',serif; font-size:clamp(22px,5vw,34px); font-weight:700; line-height:1.35; margin-bottom:16px; color:var(--white); }
+.sec-body { font-size:14px; line-height:1.9; color:var(--text-dim); font-weight:300; }
+
+/* MOCKUP */
+.mockup { background:var(--black-mid); }
+.mockup-note { margin-top:16px; margin-bottom:28px; padding:14px 18px; background:var(--yellow-light); border:1px solid var(--yellow-border); font-size:13px; color:var(--yellow); line-height:1.7; }
+.browser-frame { border:1px solid rgba(255,255,255,0.1); overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
+.browser-bar { background:#0A0A0A; padding:10px 16px; display:flex; align-items:center; gap:8px; }
+.dot { width:10px; height:10px; border-radius:50%; }
+.browser-url { flex:1; background:rgba(255,255,255,0.05); padding:4px 12px; font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,0.25); border-radius:3px; }
+
+/* ===== LPモック（黄系） ===== */
+.lp { background:#FFFFFF; color:#1A1A1A; font-family:'Noto Sans JP',sans-serif; }
+
+.lp-header { background:#1A1A1A; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid var(--yellow); }
+.lp-logo { font-family:'Noto Serif JP',serif; font-size:16px; font-weight:700; color:var(--yellow); }
+.lp-nav { display:flex; gap:20px; }
+.lp-nav-link { font-size:11px; color:rgba(255,255,255,0.6); }
+.lp-cta-btn { background:var(--yellow); color:#1A1A1A; padding:8px 18px; font-size:11px; font-weight:900; border-radius:2px; }
+
+/* FV */
+.lp-fv { background:linear-gradient(135deg, #1A1A1A 0%, #252520 100%); padding:56px 28px 48px; display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center; position:relative; overflow:hidden; }
+.lp-fv::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 40%, rgba(245,200,0,0.08) 0%, transparent 60%); }
+.lp-fv-text { position:relative; }
+.lp-fv-tag { display:inline-block; background:var(--yellow); color:#1A1A1A; font-size:10px; font-weight:900; padding:4px 12px; margin-bottom:14px; }
+.lp-fv-catch { font-family:'Noto Serif JP',serif; font-size:clamp(20px,4vw,30px); font-weight:700; color:var(--white); line-height:1.45; margin-bottom:14px; }
+.lp-fv-catch em { font-style:normal; color:var(--yellow); }
+.lp-fv-sub { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.9; margin-bottom:24px; }
+.lp-fv-btns { display:flex; flex-direction:column; gap:8px; max-width:220px; }
+.lp-btn-main { background:var(--yellow); color:#1A1A1A; padding:14px 20px; font-size:13px; font-weight:900; text-align:center; }
+.lp-btn-sub { background:transparent; border:1px solid rgba(255,255,255,0.25); color:rgba(255,255,255,0.7); padding:11px 20px; font-size:12px; text-align:center; }
+.lp-fv-img { font-size:80px; text-align:center; position:relative; }
+.lp-fv-img::before { content:''; position:absolute; inset:0; background:radial-gradient(circle, rgba(245,200,0,0.12), transparent 70%); }
+
+/* 3つのポイント */
+.lp-points { background:var(--yellow-pale); padding:28px 24px; border-top:3px solid var(--yellow); border-bottom:1px solid #EEE; }
+.lp-points-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+.lp-point { background:var(--white); border:1px solid #EEE; border-top:3px solid var(--yellow); padding:16px 14px; text-align:center; }
+.lp-point-icon { font-size:28px; margin-bottom:8px; }
+.lp-point-num { font-family:'DM Mono',monospace; font-size:9px; color:var(--yellow-dark); letter-spacing:0.1em; margin-bottom:4px; }
+.lp-point-title { font-size:13px; font-weight:700; color:#1A1A1A; margin-bottom:4px; }
+.lp-point-desc { font-size:11px; color:#666; line-height:1.6; }
+
+/* サービス内容 */
+.lp-service { padding:28px 24px; background:var(--white); border-bottom:1px solid #EEE; }
+.lp-sec-label { font-family:'DM Mono',monospace; font-size:9px; color:var(--yellow-dark); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:6px; }
+.lp-sec-h { font-family:'Noto Serif JP',serif; font-size:18px; font-weight:700; color:#1A1A1A; margin-bottom:14px; }
+.lp-service-list { display:flex; flex-direction:column; gap:8px; }
+.lp-service-item { display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border:1px solid #EEE; border-left:3px solid var(--yellow); background:var(--yellow-pale); }
+.lp-service-icon { font-size:20px; flex-shrink:0; }
+.lp-service-title { font-size:13px; font-weight:700; color:#1A1A1A; margin-bottom:3px; }
+.lp-service-desc { font-size:11px; color:#666; line-height:1.6; }
+
+/* 実績数字 */
+.lp-numbers { background:#1A1A1A; padding:24px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; }
+.lp-number { background:#1A1A1A; padding:16px 10px; text-align:center; border:1px solid rgba(255,255,255,0.07); }
+.lp-number-val { font-family:'DM Mono',monospace; font-size:22px; font-weight:700; color:var(--yellow); display:block; margin-bottom:4px; }
+.lp-number-label { font-size:10px; color:rgba(255,255,255,0.4); line-height:1.4; }
+
+/* CTA */
+.lp-cta { background:var(--yellow); padding:32px 24px; text-align:center; }
+.lp-cta-title { font-family:'Noto Serif JP',serif; font-size:18px; font-weight:700; color:#1A1A1A; margin-bottom:6px; }
+.lp-cta-sub { font-size:12px; color:rgba(26,26,26,0.65); margin-bottom:18px; line-height:1.7; }
+.lp-cta-final-btn { display:inline-block; background:#1A1A1A; color:var(--yellow); padding:14px 36px; font-size:14px; font-weight:900; }
+
+/* 提案書後半 */
+.spec { background:var(--black-light); }
+.spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:24px; }
+.spec-card { background:rgba(255,255,255,0.03); border:1px solid var(--border); padding:18px; border-top:2px solid var(--yellow); }
+.spec-card-label { font-family:'DM Mono',monospace; font-size:10px; color:var(--yellow); letter-spacing:0.1em; margin-bottom:8px; }
+.spec-card h3 { font-size:13px; font-weight:700; color:var(--white); margin-bottom:8px; }
+.spec-card ul { list-style:none; display:flex; flex-direction:column; gap:5px; }
+.spec-card ul li { font-size:12px; color:var(--text-dim); display:flex; gap:7px; line-height:1.6; }
+.spec-card ul li::before { content:'✓'; color:var(--yellow); flex-shrink:0; }
+
+.estimate { background:var(--black-mid); }
+.estimate-box { margin-top:24px; border:1px solid var(--border); overflow:hidden; }
+.estimate-header { padding:18px 24px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:var(--black-light); position:relative; }
+.estimate-header::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--yellow), transparent); }
+.estimate-header h3 { font-size:14px; font-weight:700; color:var(--white); }
+.estimate-price { font-family:'Noto Serif JP',serif; font-size:24px; font-weight:700; color:var(--yellow); line-height:1; }
+.estimate-price small { font-family:'Noto Sans JP',sans-serif; font-size:11px; color:var(--gray); margin-left:6px; }
+.estimate-rows { padding:12px 24px; background:var(--black-mid); }
+.estimate-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; }
+.estimate-row:last-child { border-bottom:none; }
+.estimate-row-label { color:var(--text-dim); }
+.estimate-row-val { font-family:'DM Mono',monospace; font-size:12px; color:var(--white); font-weight:700; }
+.estimate-note { margin:0 24px 16px; padding:10px 14px; background:var(--yellow-light); border:1px solid var(--yellow-border); font-size:12px; color:rgba(220,180,0,0.9); line-height:1.7; }
+
+.portfolio { background:var(--black); padding:72px 28px; }
+.portfolio-links { display:flex; flex-direction:column; gap:1px; margin-top:24px; background:rgba(255,255,255,0.06); }
+.portfolio-link { display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.03); padding:16px 20px; text-decoration:none; transition:background 0.2s; }
+.portfolio-link:hover { background:rgba(255,255,255,0.06); }
+.portfolio-link h4 { font-size:13px; font-weight:700; color:var(--white); margin-bottom:3px; }
+.portfolio-link p { font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,0.25); }
+.p-arrow { color:var(--yellow); font-size:16px; }
+
+.cta-section { background:var(--black-mid); padding:72px 28px; text-align:center; }
+.cta-box { background:rgba(255,255,255,0.03); border:1px solid var(--border); padding:40px 24px; margin-top:28px; position:relative; overflow:hidden; }
+.cta-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--yellow), transparent); }
+.cta-name { font-family:'Noto Serif JP',serif; font-size:20px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.cta-role { font-family:'DM Mono',monospace; font-size:11px; color:var(--gray); margin-bottom:16px; }
+.cta-divider { height:1px; background:var(--border); margin:16px 0; }
+.cta-message { font-size:13px; color:var(--text-dim); line-height:1.9; }
+
+footer { background:#080808; border-top:1px solid var(--border); padding:16px 28px; text-align:center; }
+footer p { font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,0.12); }
+
+@media (min-width:768px) {
+  .hero,.section,.mockup,.portfolio,.cta-section { padding:96px 64px; }
+  .spec-grid { grid-template-columns:repeat(4,1fr); }
+  .portfolio-links { display:grid; grid-template-columns:1fr 1fr; gap:1px; }
+  .cta-box { max-width:500px; margin:28px auto 0; padding:44px; }
+}
+@media (max-width:560px) {
+  .lp-fv { grid-template-columns:1fr; }
+  .lp-fv-img { display:none; }
+  .lp-points-grid { grid-template-columns:1fr; }
+  .lp-numbers { grid-template-columns:1fr 1fr 1fr; }
+  .spec-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top"></div>
+  <div class="hero-badge">kazu090909 様　制作提案書</div>
+  <h1>成果につながる<br><em>黄系LPを</em><br>デザイン〜コーディングまで<br>一貫して制作します。</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">構成設計・デザイン・HTML/CSSコーディング（スマホレスポンシブ）まで一貫対応。素材共有後2〜3日以内での初稿提出が可能です。</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-val">黄系</span><span class="stat-label">ご希望カラー<br>対応</span></div>
+    <div class="stat"><span class="stat-val">2〜3日</span><span class="stat-label">初稿提出<br>目安</span></div>
+    <div class="stat"><span class="stat-val">継続</span><span class="stat-label">長期お付き合い<br>大歓迎</span></div>
+  </div>
+</section>
+
+<!-- MOCKUP -->
+<section class="section mockup">
+  <div class="sec-label">Design Mockup</div>
+  <h2 class="sec-title">LP完成イメージ<br>（黄系カラー）</h2>
+  <p class="sec-body">ご希望の黄系カラーをベースにしたLP完成イメージです。ワイヤー・テキスト・画像素材をご共有いただければ、この方向性でブラッシュアップします。</p>
+  <div class="mockup-note">💡 以下はKairosが提案するデザインモックです。ワイヤーや参考サイトをご共有いただければ、そのイメージをもとに制作します。</div>
+
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <div class="dot" style="background:#FF5F56"></div>
+      <div class="dot" style="background:#FFBD2E"></div>
+      <div class="dot" style="background:#27C93F"></div>
+      <div class="browser-url">ご指定ドメイン / ランディングページ（黄系LP）</div>
+    </div>
+
+    <div class="lp">
+      <div class="lp-header">
+        <div class="lp-logo">サービス名</div>
+        <div class="lp-nav">
+          <span class="lp-nav-link">特徴</span>
+          <span class="lp-nav-link">サービス</span>
+          <span class="lp-nav-link">実績</span>
+          <span class="lp-nav-link">お問い合わせ</span>
+        </div>
+        <div class="lp-cta-btn">無料相談はこちら</div>
+      </div>
+
+      <div class="lp-fv">
+        <div class="lp-fv-text">
+          <div class="lp-fv-tag">✨ 実績〇〇件突破</div>
+          <div class="lp-fv-catch">
+            あなたのビジネスを、<br>
+            <em>次のステージへ</em>。
+          </div>
+          <div class="lp-fv-sub">サービスの強み・特徴をここに記載します。ワイヤー・テキスト素材をもとに最適なキャッチコピーをご提案します。</div>
+          <div class="lp-fv-btns">
+            <div class="lp-btn-main">▶ 無料で相談する</div>
+            <div class="lp-btn-sub">サービスの詳細を見る →</div>
+          </div>
+        </div>
+        <div class="lp-fv-img">⭐</div>
+      </div>
+
+      <div class="lp-points">
+        <div style="font-family:'Noto Serif JP',serif;font-size:16px;font-weight:700;color:#1A1A1A;text-align:center;">選ばれる<span style="color:var(--yellow-dark);font-size:20px;">3つ</span>の理由</div>
+        <div class="lp-points-grid">
+          <div class="lp-point"><div class="lp-point-icon">🏆</div><div class="lp-point-num">POINT 01</div><div class="lp-point-title">ポイント1タイトル</div><div class="lp-point-desc">サービスの強みをここに記載。ワイヤーをもとに整理します。</div></div>
+          <div class="lp-point"><div class="lp-point-icon">⚡</div><div class="lp-point-num">POINT 02</div><div class="lp-point-title">ポイント2タイトル</div><div class="lp-point-desc">ユーザーが感じるメリットを端的に表現します。</div></div>
+          <div class="lp-point"><div class="lp-point-icon">🤝</div><div class="lp-point-num">POINT 03</div><div class="lp-point-title">ポイント3タイトル</div><div class="lp-point-desc">信頼性・実績・安心感を伝えるメッセージを設計します。</div></div>
+        </div>
+      </div>
+
+      <div class="lp-service">
+        <div class="lp-sec-label">SERVICES</div>
+        <div class="lp-sec-h">サービス内容</div>
+        <div class="lp-service-list">
+          <div class="lp-service-item"><div class="lp-service-icon">✅</div><div><div class="lp-service-title">サービス項目1</div><div class="lp-service-desc">サービスの説明文がここに入ります。テキスト素材をもとに最適化します。</div></div></div>
+          <div class="lp-service-item"><div class="lp-service-icon">✅</div><div><div class="lp-service-title">サービス項目2</div><div class="lp-service-desc">読者が「これは自分に合っている」と感じる構成で整理します。</div></div></div>
+          <div class="lp-service-item"><div class="lp-service-icon">✅</div><div><div class="lp-service-title">サービス項目3</div><div class="lp-service-desc">導線設計を意識したレイアウトで、問い合わせにつながる構成にします。</div></div></div>
+        </div>
+      </div>
+
+      <div class="lp-numbers">
+        <div class="lp-number"><span class="lp-number-val">〇〇+</span><span class="lp-number-label">累計実績件数</span></div>
+        <div class="lp-number"><span class="lp-number-val">〇〇%</span><span class="lp-number-label">顧客満足度</span></div>
+        <div class="lp-number"><span class="lp-number-val">〇〇年</span><span class="lp-number-label">サービス実績</span></div>
+      </div>
+
+      <div class="lp-cta">
+        <div class="lp-cta-title">まずはお気軽にご相談ください</div>
+        <div class="lp-cta-sub">お問い合わせ・ご質問はいつでも歓迎です。無料でご相談いただけます。</div>
+        <div class="lp-cta-final-btn">▶ 無料相談はこちら</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEC -->
+<section class="section spec">
+  <div class="sec-label">What We Do</div>
+  <h2 class="sec-title">対応範囲</h2>
+  <div class="spec-grid">
+    <div class="spec-card"><div class="spec-card-label">DESIGN</div><h3>デザイン</h3><ul><li>Figmaでのデザイン作成</li><li>黄系カラーに合わせた配色設計</li><li>スマホファーストのレイアウト</li></ul></div>
+    <div class="spec-card"><div class="spec-card-label">CODING</div><h3>コーディング</h3><ul><li>HTML/CSSコーディング</li><li>スマホレスポンシブ対応</li><li>JavaScriptアニメーション</li></ul></div>
+    <div class="spec-card"><div class="spec-card-label">STRUCTURE</div><h3>構成設計</h3><ul><li>ワイヤーをもとに構成整理</li><li>コンバージョン導線設計</li><li>素材なしでも相談対応可</li></ul></div>
+    <div class="spec-card"><div class="spec-card-label">OPTION</div><h3>オプション</h3><ul><li>WordPress組み込み対応可</li><li>PSDからのコーディング可</li><li>継続制作・改善対応可</li></ul></div>
+  </div>
+</section>
+
+<!-- ESTIMATE -->
+<section class="section estimate">
+  <div class="sec-label">Estimate</div>
+  <h2 class="sec-title">お見積もり</h2>
+  <p class="sec-body">目安として8万円〜にてご対応可能です。内容に応じてご相談します。</p>
+  <div class="estimate-box">
+    <div class="estimate-header">
+      <h3>LP デザイン・コーディング一式</h3>
+      <div class="estimate-price">88,000円<small>税込・相談可</small></div>
+    </div>
+    <div class="estimate-rows">
+      <div class="estimate-row"><span class="estimate-row-label">Figmaデザイン作成（黄系カラー）</span><span class="estimate-row-val">込み</span></div>
+      <div class="estimate-row"><span class="estimate-row-label">HTML/CSSコーディング</span><span class="estimate-row-val">込み</span></div>
+      <div class="estimate-row"><span class="estimate-row-label">スマホレスポンシブ対応</span><span class="estimate-row-val">込み</span></div>
+      <div class="estimate-row"><span class="estimate-row-label">構成設計・導線設計</span><span class="estimate-row-val">込み</span></div>
+      <div class="estimate-row"><span class="estimate-row-label">WordPress組み込み（オプション）</span><span class="estimate-row-val">要相談</span></div>
+      <div class="estimate-row"><span class="estimate-row-label">初稿提出目安（素材共有後）</span><span class="estimate-row-val">2〜3日以内</span></div>
+    </div>
+    <div class="estimate-note">※ワイヤーフレーム・テキスト・画像素材をご共有いただければ、その内容をもとに制作します。素材なしでも対応可能ですのでご相談ください。</div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio">
+  <div class="sec-label">Portfolio</div>
+  <h2 class="sec-title">実績・ポートフォリオ</h2>
+  <div class="portfolio-links">
+    <a href="https://writeful.academy/" target="_blank" rel="noopener" class="portfolio-link"><div><h4>Webサイト・HP実装実績</h4><p>writeful.academy</p></div><span class="p-arrow">→</span></a>
+    <a href="https://kairos-epsilon.github.io/kairos-portfolio/" target="_blank" rel="noopener" class="portfolio-link"><div><h4>LP・コーポレートサイト実績</h4><p>kairos-portfolio</p></div><span class="p-arrow">→</span></a>
+    <a href="https://shibue-shoten.github.io/shibue320/index.html" target="_blank" rel="noopener" class="portfolio-link"><div><h4>コーポレートサイト実績</h4><p>shibue-shoten</p></div><span class="p-arrow">→</span></a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="sec-label" style="text-align:center">Next Step</div>
+  <h2 class="sec-title" style="text-align:center">ワイヤーと素材を<br>共有してください。</h2>
+  <p class="sec-body" style="text-align:center;max-width:480px;margin:0 auto">ワイヤー・テキスト・画像素材をご共有いただければ、2〜3日以内での初稿提出が可能です。まずはお気軽にご相談ください。</p>
+  <div class="cta-box">
+    <div class="cta-name">渋谷 俊久</div>
+    <div class="cta-role">Web Director / Team Kairos</div>
+    <div class="cta-divider"></div>
+    <p class="cta-message">成果に直結するLPは構成設計と導線設計が重要です。デザインからコーディングまで一貫して対応でき、黄系カラーでの制作実績もあります。コミュニケーションを大切にしながら、スピード感を持って対応いたします。継続的なお付き合いも前向きに検討しております。</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Kairos Web Production Team — Proposal for kazu090909様</p>
+</footer>
+</body>
+</html>
